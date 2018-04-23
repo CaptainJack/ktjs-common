@@ -11,10 +11,8 @@ class ConsoleOutput : Output {
 		}.apply(
 			null,
 			arrayOf(
-				record.logger,
-				record.message,
+				"[${record.level.name.padEnd(5)}] [${record.logger}] ${record.message}",
 				*record.messageArguments
-			)
-		)
+			)		)
 	}
 }
