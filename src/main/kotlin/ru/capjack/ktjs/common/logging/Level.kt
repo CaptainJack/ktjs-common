@@ -4,5 +4,6 @@ enum class Level {
 	ERROR,
 	WARN,
 	INFO,
-	DEBUG
+	DEBUG,
+	TRACE
 }

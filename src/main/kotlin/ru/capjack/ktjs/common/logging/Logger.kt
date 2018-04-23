@@ -8,6 +8,7 @@ interface Logger {
 	val warnEnabled: Boolean
 	val infoEnabled: Boolean
 	val debugEnabled: Boolean
+	val traceEnabled: Boolean
 	
 	fun isEnabled(level: Level): Boolean
 	
@@ -18,6 +19,8 @@ interface Logger {
 	fun info(message: String, vararg args: dynamic)
 	
 	fun debug(message: String, vararg args: dynamic)
+	
+	fun trace(message: String, vararg args: dynamic)
 	
 	fun log(level: Level, message: String, vararg args: dynamic)
 }

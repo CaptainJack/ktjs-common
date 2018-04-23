@@ -21,6 +21,9 @@ internal class LoggerImpl(
 	override val debugEnabled: Boolean
 		get() = isEnabled(Level.DEBUG)
 	
+	override val traceEnabled: Boolean
+		get() = isEnabled(Level.TRACE)
+	
 	override fun isEnabled(level: Level): Boolean {
 		return this.level.ordinal >= level.ordinal
 	}
@@ -39,6 +42,10 @@ internal class LoggerImpl(
 	
 	override fun debug(message: String, vararg args: dynamic) {
 		log(Level.DEBUG, message, *args)
+	}
+	
+	override fun trace(message: String, vararg args: dynamic) {
+		log(Level.TRACE, message, *args)
 	}
 	
 	override fun log(level: Level, message: String, vararg args: dynamic) {

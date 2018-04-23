@@ -7,6 +7,7 @@ class ConsoleOutput : Output {
 			Level.WARN  -> console.asDynamic().warn
 			Level.INFO  -> console.asDynamic().info
 			Level.DEBUG -> console.asDynamic().log
+			Level.TRACE -> console.asDynamic().log
 		}.apply(
 			null,
 			arrayOf(
