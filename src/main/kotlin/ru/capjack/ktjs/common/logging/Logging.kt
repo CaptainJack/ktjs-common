@@ -4,7 +4,7 @@ import kotlin.reflect.KClass
 
 object Logging {
 	private var output = ProxyOutput(ConsoleOutput())
-	private var defaultLevel: Level = Level.DEBUG
+	private var defaultLevel: Level = Level.TRACE
 	private var loggers: MutableMap<String, LoggerImpl> = mutableMapOf()
 	private var levels: MutableMap<String, Level> = mutableMapOf()
 	
