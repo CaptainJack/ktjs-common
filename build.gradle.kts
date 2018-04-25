@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-	compile(kotlin("stdlib-js"))
+	implementation(kotlin("stdlib-js"))
 }
 
 tasks.withType<Kotlin2JsCompile> {
