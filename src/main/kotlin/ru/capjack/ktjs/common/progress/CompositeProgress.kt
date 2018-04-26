@@ -2,7 +2,7 @@ package ru.capjack.ktjs.common.progress
 
 import ru.capjack.ktjs.common.invokeDelayed
 
-class CompositeProgress(private val progresses: Collection<Progress>) : AbstractProgress() {
+open class CompositeProgress(private val progresses: Collection<Progress>) : AbstractProgress() {
 	
 	constructor(vararg progresses: Progress) : this(progresses.toList())
 	

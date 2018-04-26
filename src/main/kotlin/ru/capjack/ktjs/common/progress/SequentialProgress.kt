@@ -1,6 +1,6 @@
 package ru.capjack.ktjs.common.progress
 
-class SequentialProgress(private val runners: List<ProgressRunner>) : AbstractProgress() {
+open class SequentialProgress(private val runners: List<ProgressRunner>) : AbstractProgress() {
 	private var currentIndex: Int = -1
 	private lateinit var currentProgress: Progress
 	
