@@ -7,6 +7,3 @@ open class ControllableProgress() : AbstractProgress() {
 		complete()
 	}
 }
-
-fun progress(init: ControllableProgress.() -> Unit): ControllableProgress {
-	return ControllableProgress().apply(init)}
