@@ -7,6 +7,10 @@ open class ChangeableImpl : Changeable, Destroyable {
 		return handlers.add(handler)
 	}
 	
+	override fun offChange(handler: () -> Unit) {
+		handlers.remove(handler)
+	}
+	
 	override fun destroy() {
 		handlers.clear()
 	}
