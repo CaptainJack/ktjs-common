@@ -31,11 +31,11 @@ class DefaultTimeSystem : TimeSystem {
 		scheduledProcessor.clear()
 	}
 	
-	override fun forNextFrame(handler: (passedTime: Double) -> Unit): Cancelable {
+	override fun onNextFrame(handler: (passedTime: Double) -> Unit): Cancelable {
 		return frameProcessor.addTask(false, handler)
 	}
 	
-	override fun forEachFrame(handler: (passedTime: Double) -> Unit): Cancelable {
+	override fun onEachFrame(handler: (passedTime: Double) -> Unit): Cancelable {
 		return frameProcessor.addTask(true, handler)
 	}
 	

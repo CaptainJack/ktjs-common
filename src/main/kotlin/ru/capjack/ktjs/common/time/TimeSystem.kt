@@ -11,9 +11,9 @@ interface TimeSystem {
 	
 	fun clear()
 	
-	fun forNextFrame(handler: (passedTime: Double) -> Unit): Cancelable
+	fun onNextFrame(handler: (passedTime: Double) -> Unit): Cancelable
 	
-	fun forEachFrame(handler: (passedTime: Double) -> Unit): Cancelable
+	fun onEachFrame(handler: (passedTime: Double) -> Unit): Cancelable
 	
 	fun schedule(delay: Int, handler: (passedTime: Double) -> Unit): Cancelable
 	

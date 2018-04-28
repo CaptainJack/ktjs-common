@@ -21,7 +21,7 @@ abstract class FlowNumberBase<T : Number>(
 	private var tick: Cancelable? = null
 	private var runningTime: Double = 0.0
 	
-	override fun addHandler(handler: (current: T, delta: T) -> Unit): Cancelable {
+	override fun onChange(handler: (current: T, delta: T) -> Unit): Cancelable {
 		return handlers.add(handler)
 	}
 	

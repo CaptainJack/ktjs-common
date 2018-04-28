@@ -17,7 +17,7 @@ open class CompositeProgress(private val progresses: Collection<Progress>) : Abs
 					++completedCount
 				}
 				else {
-					progress.addCompleteHandler(::handleProgressCompleted)
+					progress.onComplete(::handleProgressCompleted)
 				}
 			}
 			if (completedCount == progresses.size) {

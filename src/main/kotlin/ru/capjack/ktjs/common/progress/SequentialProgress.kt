@@ -21,7 +21,7 @@ open class SequentialProgress(private val runners: List<ProgressRunner>) : Abstr
 		}
 		else {
 			currentProgress = runners[currentIndex].run()
-			currentProgress.addCompleteHandler(::runNext)
+			currentProgress.onComplete(::runNext)
 		}
 	}
 }

@@ -12,7 +12,7 @@ class FakeProgress(override val completed: Boolean) : Progress {
 	
 	override val percent: Double = if (completed) 1.0 else 0.0
 	
-	override fun addCompleteHandler(handler: () -> Unit): Cancelable {
+	override fun onComplete(handler: () -> Unit): Cancelable {
 		return if (completed) invokeDelayedCancelable(handler) else CancelableDummy
 	}
 }

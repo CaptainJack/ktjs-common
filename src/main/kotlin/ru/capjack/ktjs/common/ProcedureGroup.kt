@@ -15,9 +15,9 @@ class ProcedureGroup {
 	
 	fun invoke(args: Array<out Any?>) = doInvoke(args)
 	
-	fun invokeAndClear(vararg args: Any?) = doClearAndInvoke(args)
+	fun clearAndInvoke(vararg args: Any?) = doClearAndInvoke(args)
 	
-	fun invokeAndClear(args: Array<out Any?>) = doClearAndInvoke(args)
+	fun clearAndInvoke(args: Array<out Any?>) = doClearAndInvoke(args)
 	
 	private fun doAdd(procedure: dynamic): Cancelable {
 		val holder = Holder(procedure)

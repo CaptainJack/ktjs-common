@@ -12,13 +12,13 @@ open class EventDispatcherImpl<in E : Any> : EventDispatcher<E> {
 		receivers.invoke(event, event)
 	}
 	
-	override fun <C : E> addEventReceiver(type: KClass<C>, receiver: () -> Unit) = addReceiver(type, receiver)
+	override fun <C : E> onEvent(type: KClass<C>, receiver: () -> Unit) = addReceiver(type, receiver)
 	
-	override fun <C : E> addEventReceiver(type: KClass<C>, receiver: (event: C) -> Unit) = addReceiver(type, receiver)
+	override fun <C : E> onEvent(type: KClass<C>, receiver: (event: C) -> Unit) = addReceiver(type, receiver)
 	
-	override fun <C : E> addEventReceiver(type: C, receiver: () -> Unit) = addReceiver(type, receiver)
+	override fun <C : E> onEvent(type: C, receiver: () -> Unit) = addReceiver(type, receiver)
 	
-	override fun <C : E> addEventReceiver(type: C, receiver: (event: C) -> Unit) = addReceiver(type, receiver)
+	override fun <C : E> onEvent(type: C, receiver: (event: C) -> Unit) = addReceiver(type, receiver)
 	
 	fun clearEventReceivers() {
 		receivers.clear()

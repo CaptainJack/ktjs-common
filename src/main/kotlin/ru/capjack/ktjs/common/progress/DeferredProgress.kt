@@ -9,7 +9,7 @@ open class DeferredProgress : AbstractProgress() {
 			throw IllegalStateException()
 		}
 		this.progress = progress
-		progress.addCompleteHandler(::complete)
+		progress.onComplete(::complete)
 	}
 	
 	override fun calculatePercent(): Double {

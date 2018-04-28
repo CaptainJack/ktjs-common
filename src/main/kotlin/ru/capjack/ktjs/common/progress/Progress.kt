@@ -6,5 +6,5 @@ interface Progress {
 	val completed: Boolean
 	val percent: Double
 	
-	fun addCompleteHandler(handler: () -> Unit): Cancelable
+	fun onComplete(handler: () -> Unit): Cancelable
 }

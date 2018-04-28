@@ -1,7 +1,7 @@
 package ru.capjack.ktjs.common.progress
 
 import ru.capjack.ktjs.common.Cancelable
-import ru.capjack.ktjs.common.Handlers
+import ru.capjack.ktjs.common.ProcedureGroup
 import ru.capjack.ktjs.common.invokeDelayed
 
 abstract class AbstractProgress : Progress {
@@ -11,7 +11,7 @@ abstract class AbstractProgress : Progress {
 	override val percent: Double
 		get() = if (completed) 1.0 else calculatePercent()
 	
-	private val completeHandlers: Handlers = Handlers()
+	private val completeHandlers = ProcedureGroup()
 	
 	protected abstract fun calculatePercent(): Double
 	
@@ -25,7 +25,7 @@ abstract class AbstractProgress : Progress {
 		}
 	}
 	
-	override fun addCompleteHandler(handler: () -> Unit): Cancelable {
+	override fun onComplete(handler: () -> Unit): Cancelable {
 		val task = completeHandlers.add(handler)
 		if (completed) {
 			invokeDelayed(::invokeCompleteHandlers)
