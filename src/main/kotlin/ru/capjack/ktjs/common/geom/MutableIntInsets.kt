@@ -7,23 +7,9 @@ class MutableIntInsets(
 	override var bottom: Int
 ) : MutableInsets<Int> {
 	
-	override var horizontal: Int
-		get() = left + right
-		set(value) {
-			left = value
-			right = value
-		}
+	constructor(both: Int) : this(both, both)
 	
-	override var vertical: Int
-		get() = top + bottom
-		set(value) {
-			top = value
-			bottom = value
-		}
-	
-	constructor(value: Int) : this(value, value)
-	
-	constructor(horizontal: Int, vertical: Int) : this(horizontal, horizontal, vertical, vertical)
+	constructor(x: Int, y: Int) : this(x, x, y, y)
 	
 	override fun set(left: Int, right: Int, top: Int, bottom: Int) {
 		this.left = left
@@ -31,4 +17,10 @@ class MutableIntInsets(
 		this.top = top
 		this.bottom = bottom
 	}
+	
+	override val size: AxialValues<Int>
+		get() = axial(left + right, top + bottom)
+	
+	override val leftTop: AxialValues<Int>
+		get() = axial(left, top)
 }

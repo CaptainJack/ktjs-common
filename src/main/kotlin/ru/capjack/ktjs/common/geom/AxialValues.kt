@@ -1,30 +1,16 @@
 package ru.capjack.ktjs.common.geom
 
 interface AxialValues<T> {
-	val horizontal: T
-	val vertical: T
-	
 	val x: T
-		get() = horizontal
 	val y: T
-		get() = vertical
 	
-	operator fun get(axis: Axis): T = when (axis) {
-		Axis.HORIZONTAL -> horizontal
-		Axis.VERTICAL   -> vertical
-	}
+	operator fun get(axis: Axis): T
 	
-	fun rotate(): AxialValues<T> = axial(vertical, horizontal)
+	fun rotate(): AxialValues<T>
 	
-	fun isEquals(value: T): Boolean {
-		return horizontal == value && vertical == value
-	}
+	fun isEquals(both: T): Boolean
 	
-	fun isEquals(horizontal: T, vertical: T): Boolean {
-		return this.horizontal == horizontal && this.vertical == vertical
-	}
+	fun isEquals(x: T, y: T): Boolean
 	
-	fun isEquals(other: AxialValues<T>): Boolean {
-		return this === other || (horizontal == other.horizontal && vertical == other.vertical)
-	}
+	fun isEquals(v: AxialValues<T>): Boolean
 }

@@ -6,12 +6,12 @@ fun <T : Comparable<T>> MutableAxialValues<T>.setMax(axis: Axis, value: T) {
 	}
 }
 
-fun <T : Comparable<T>> MutableAxialValues<T>.setMax(horizontal: T, vertical: T) {
-	val h = this.horizontal < horizontal
-	val v = this.vertical < vertical
+fun <T : Comparable<T>> MutableAxialValues<T>.setMax(x: T, y: T) {
+	val h = this.x < x
+	val v = this.y < y
 	when {
-		h && v -> set(horizontal, vertical)
-		h      -> this.horizontal = horizontal
-		v      -> this.vertical = vertical
+		h && v -> set(x, y)
+		h      -> this.x = x
+		v      -> this.y = y
 	}
 }

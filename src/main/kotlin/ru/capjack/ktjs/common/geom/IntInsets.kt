@@ -7,11 +7,13 @@ class IntInsets(
 	override val bottom: Int
 ) : Insets<Int> {
 	
-	override val horizontal: Int = left + right
-	
-	override val vertical: Int = top + bottom
-	
 	constructor(both: Int) : this(both, both)
 	
-	constructor(horizontal: Int, vertical: Int) : this(horizontal, horizontal, vertical, vertical)
+	constructor(x: Int, y: Int) : this(x, x, y, y)
+	
+	override val size: AxialValues<Int>
+		get() = axial(left + right, top + bottom)
+	
+	override val leftTop: AxialValues<Int>
+		get() = axial(left, top)
 }

@@ -15,7 +15,7 @@ open class ChangeableImpl : Changeable, Destroyable {
 		handlers.clear()
 	}
 	
-	protected open fun dispatchChange() {
+	fun dispatchChange() {
 		handlers.invoke()
 	}
 }

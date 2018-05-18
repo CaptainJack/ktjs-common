@@ -1,16 +1,15 @@
 package ru.capjack.ktjs.common.geom
 
 enum class Axis {
-	HORIZONTAL,
-	VERTICAL;
+	X, Y;
 	
 	companion object {
 		inline fun forEach(block: (axis: Axis) -> Unit) {
-			block(HORIZONTAL)
-			block(VERTICAL)
+			block(X)
+			block(Y)
 		}
 	}
 	
 	val opposite: Axis
-		get() = if (this == HORIZONTAL) VERTICAL else HORIZONTAL
+		get() = if (this == X) Y else X
 }

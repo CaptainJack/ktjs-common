@@ -5,21 +5,21 @@ fun <T> axial(horizontal: T, vertical: T): AxialValues<T> {
 }
 
 fun <T> axial(both: T): AxialValues<T> {
-	return AxialValuesImpl(both)
+	return AxialValuesImpl(both, both)
 }
 
 
 fun <T> axial(supplier: (axis: Axis) -> T): AxialValues<T> {
 	return AxialValuesImpl(
-		supplier(Axis.HORIZONTAL),
-		supplier(Axis.VERTICAL)
+		supplier(Axis.X),
+		supplier(Axis.Y)
 	)
 }
 
 fun <T> axial(axis: Axis, axisValue: T, oppositeAxisValue: T): AxialValues<T> {
 	return when (axis) {
-		Axis.HORIZONTAL -> AxialValuesImpl(axisValue, oppositeAxisValue)
-		Axis.VERTICAL   -> AxialValuesImpl(oppositeAxisValue, axisValue)
+		Axis.X -> AxialValuesImpl(axisValue, oppositeAxisValue)
+		Axis.Y -> AxialValuesImpl(oppositeAxisValue, axisValue)
 	}
 }
 
@@ -29,7 +29,7 @@ fun <T> mutableAxial(horizontal: T, vertical: T): MutableAxialValues<T> {
 }
 
 fun <T> mutableAxial(both: T): MutableAxialValues<T> {
-	return MutableAxialValuesImpl(both)
+	return MutableAxialValuesImpl(both, both)
 }
 
 fun axialInt(horizontal: Number, vertical: Number): AxialValues<Int> {

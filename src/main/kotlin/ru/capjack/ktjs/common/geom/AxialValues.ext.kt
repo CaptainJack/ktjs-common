@@ -17,8 +17,8 @@ fun <T : Comparable<T>> AxialValues<T>.isInsideAtLeastOne(other: AxialValues<T>)
 }
 
 inline fun <T> AxialValues<T>.forEach(block: (axis: Axis, value: T) -> Unit) {
-	block(Axis.HORIZONTAL, x)
-	block(Axis.VERTICAL, y)
+	block(Axis.X, x)
+	block(Axis.Y, y)
 }
 
 inline fun <T> AxialValues<T>.forEachIf(value: T, block: (axis: Axis) -> Unit) {
@@ -31,4 +31,9 @@ inline fun <T> AxialValues<T>.forEachIf(value: T, block: (axis: Axis) -> Unit) {
 
 fun AxialValues<Int>.negative(): AxialValues<Int> {
 	return axial(-x, -y)
+}
+
+
+fun <T> AxialValues<T>.copy(): AxialValues<T> {
+	return axial(x, y)
 }
