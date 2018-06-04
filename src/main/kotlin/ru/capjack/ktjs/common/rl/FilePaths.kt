@@ -1,7 +1,8 @@
 package ru.capjack.ktjs.common.rl
 
 object FilePaths {
-	val SEPARATOR: Char = '/'
+	const val SEPARATOR: Char = '/'
+	
 	val ROOT: FilePath = RootFilePath()
 	
 	fun get(path: String): FilePath {
