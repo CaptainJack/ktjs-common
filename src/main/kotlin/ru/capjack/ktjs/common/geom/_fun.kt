@@ -62,15 +62,15 @@ fun insets(left: Int, right: Int, top: Int, bottom: Int): Insets<Int> {
 
 //
 
-fun mutableInsets(both: Int): Insets<Int> {
+fun mutableInsets(both: Int): MutableInsets<Int> {
 	return MutableIntInsets(both)
 }
 
-fun mutableInsets(horizontal: Int, vertical: Int): Insets<Int> {
+fun mutableInsets(horizontal: Int, vertical: Int): MutableInsets<Int> {
 	return MutableIntInsets(horizontal, vertical)
 }
 
-fun mutableInsets(left: Int, right: Int, top: Int, bottom: Int): Insets<Int> {
+fun mutableInsets(left: Int, right: Int, top: Int, bottom: Int): MutableInsets<Int> {
 	return MutableIntInsets(left, right, top, bottom)
 }
 
