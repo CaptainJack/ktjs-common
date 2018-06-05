@@ -33,7 +33,22 @@ fun Axial<Int>.negative(): Axial<Int> {
 	return axial(-x, -y)
 }
 
+fun <T> Axial<T>.rotate(): Axial<T> {
+	return axial(y, x)
+}
 
 fun <T> Axial<T>.copy(): Axial<T> {
 	return axial(x, y)
+}
+
+fun <T> Axial<T>.isEquals(both: T): Boolean {
+	return x == both && y == both
+}
+
+fun <T> Axial<T>.isEquals(x: T, y: T): Boolean {
+	return this.x == x && this.y == y
+}
+
+fun <T> Axial<T>.isEquals(v: Axial<T>): Boolean {
+	return this === v || (x == v.x && y == v.y)
 }

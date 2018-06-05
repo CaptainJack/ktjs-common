@@ -9,22 +9,6 @@ abstract class AbstractAxial<T> : Axial<T> {
 		}
 	}
 	
-	override fun rotate(): Axial<T> {
-		return axial(y, x)
-	}
-	
-	override fun isEquals(both: T): Boolean {
-		return x == both && y == both
-	}
-	
-	override fun isEquals(x: T, y: T): Boolean {
-		return this.x == x && this.y == y
-	}
-	
-	override fun isEquals(v: Axial<T>): Boolean {
-		return this === v || (x == v.x && y == v.y)
-	}
-	
 	override fun toString(): String {
 		return "$x:$y"
 	}

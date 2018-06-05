@@ -5,6 +5,4 @@ interface MutableInsets<T : Number> : Insets<T> {
 	override var right: T
 	override var top: T
 	override var bottom: T
-	
-	fun set(left: T, right: T, top: T, bottom: T)
 }
