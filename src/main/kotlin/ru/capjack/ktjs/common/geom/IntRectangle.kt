@@ -7,8 +7,8 @@ class IntRectangle(
 	height: Int
 ) : Rectangle<Int> {
 	
-	override val position: AxialValues<Int> = axial(x, y)
-	override val size: AxialValues<Int> = axial(width, height)
+	override val position: Axial<Int> = axial(x, y)
+	override val size: Axial<Int> = axial(width, height)
 	
 	override val x: Int
 		get() = position.x
@@ -22,7 +22,7 @@ class IntRectangle(
 	override val height: Int
 		get() = size.y
 	
-	override fun contains(p: AxialValues<Int>): Boolean {
+	override fun contains(p: Axial<Int>): Boolean {
 		return contains(p.x, p.y)
 	}
 	

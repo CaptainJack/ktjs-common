@@ -18,9 +18,9 @@ class MutableIntInsets(
 		this.bottom = bottom
 	}
 	
-	override val size: AxialValues<Int>
+	override val size: Axial<Int>
 		get() = axial(left + right, top + bottom)
 	
-	override val leftTop: AxialValues<Int>
+	override val leftTop: Axial<Int>
 		get() = axial(left, top)
 }

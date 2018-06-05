@@ -1,6 +1,6 @@
 package ru.capjack.ktjs.common.geom
 
-interface MutableAxialValues<T> : AxialValues<T> {
+interface MutableAxial<T> : Axial<T> {
 	override var x: T
 	override var y: T
 	
@@ -10,7 +10,7 @@ interface MutableAxialValues<T> : AxialValues<T> {
 	
 	fun set(x: T, y: T)
 	
-	fun set(values: AxialValues<T>)
+	fun set(values: Axial<T>)
 	
 	fun set(axis: Axis, axisValue: T, oppositeAxisValue: T)
 }

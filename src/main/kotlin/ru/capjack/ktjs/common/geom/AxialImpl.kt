@@ -1,6 +1,6 @@
 package ru.capjack.ktjs.common.geom
 
-open class AxialValuesImpl<T>(
+open class AxialImpl<T>(
 	override val x: T,
 	override val y: T
-) : AbstractAxialValues<T>()
+) : AbstractAxial<T>()

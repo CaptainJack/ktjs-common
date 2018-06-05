@@ -1,43 +1,43 @@
 package ru.capjack.ktjs.common.geom
 
-fun <T> axial(horizontal: T, vertical: T): AxialValues<T> {
-	return AxialValuesImpl(horizontal, vertical)
+fun <T> axial(horizontal: T, vertical: T): Axial<T> {
+	return AxialImpl(horizontal, vertical)
 }
 
-fun <T> axial(both: T): AxialValues<T> {
-	return AxialValuesImpl(both, both)
+fun <T> axial(both: T): Axial<T> {
+	return AxialImpl(both, both)
 }
 
 
-fun <T> axial(supplier: (axis: Axis) -> T): AxialValues<T> {
-	return AxialValuesImpl(
+fun <T> axial(supplier: (axis: Axis) -> T): Axial<T> {
+	return AxialImpl(
 		supplier(Axis.X),
 		supplier(Axis.Y)
 	)
 }
 
-fun <T> axial(axis: Axis, axisValue: T, oppositeAxisValue: T): AxialValues<T> {
+fun <T> axial(axis: Axis, axisValue: T, oppositeAxisValue: T): Axial<T> {
 	return when (axis) {
-		Axis.X -> AxialValuesImpl(axisValue, oppositeAxisValue)
-		Axis.Y -> AxialValuesImpl(oppositeAxisValue, axisValue)
+		Axis.X -> AxialImpl(axisValue, oppositeAxisValue)
+		Axis.Y -> AxialImpl(oppositeAxisValue, axisValue)
 	}
 }
 
 
-fun <T> mutableAxial(horizontal: T, vertical: T): MutableAxialValues<T> {
-	return MutableAxialValuesImpl(horizontal, vertical)
+fun <T> mutableAxial(horizontal: T, vertical: T): MutableAxial<T> {
+	return MutableAxialImpl(horizontal, vertical)
 }
 
-fun <T> mutableAxial(both: T): MutableAxialValues<T> {
-	return MutableAxialValuesImpl(both, both)
+fun <T> mutableAxial(both: T): MutableAxial<T> {
+	return MutableAxialImpl(both, both)
 }
 
-fun axialInt(horizontal: Number, vertical: Number): AxialValues<Int> {
-	return AxialValuesImpl(horizontal.toInt(), vertical.toInt())
+fun axialInt(horizontal: Number, vertical: Number): Axial<Int> {
+	return AxialImpl(horizontal.toInt(), vertical.toInt())
 }
 
-fun axialDouble(horizontal: Number, vertical: Number): AxialValues<Double> {
-	return AxialValuesImpl(horizontal.toDouble(), vertical.toDouble())
+fun axialDouble(horizontal: Number, vertical: Number): Axial<Double> {
+	return AxialImpl(horizontal.toDouble(), vertical.toDouble())
 }
 
 fun insets(both: Int): Insets<Int> {

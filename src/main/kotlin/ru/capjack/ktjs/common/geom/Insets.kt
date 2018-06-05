@@ -6,6 +6,6 @@ interface Insets<T : Number> {
 	val top: T
 	val bottom: T
 	
-	val size: AxialValues<T>
-	val leftTop: AxialValues<T>
+	val size: Axial<T>
+	val leftTop: Axial<T>
 }

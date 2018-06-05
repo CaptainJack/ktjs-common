@@ -1,9 +1,9 @@
 package ru.capjack.ktjs.common.geom
 
-open class MutableAxialValuesImpl<T>(
+open class MutableAxialImpl<T>(
 	override var x: T,
 	override var y: T
-) : AbstractAxialValues<T>(), MutableAxialValues<T> {
+) : AbstractAxial<T>(), MutableAxial<T> {
 	
 	override operator fun set(axis: Axis, value: T): T {
 		when (axis) {
@@ -22,7 +22,7 @@ open class MutableAxialValuesImpl<T>(
 		this.y = y
 	}
 	
-	override fun set(values: AxialValues<T>) {
+	override fun set(values: Axial<T>) {
 		set(values.x, values.y)
 	}
 	

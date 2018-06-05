@@ -1,8 +1,8 @@
 package ru.capjack.ktjs.common.geom
 
 interface Rectangle<T> {
-	val position: AxialValues<T>
-	val size: AxialValues<T>
+	val position: Axial<T>
+	val size: Axial<T>
 	
 	val x: T
 	val y: T
@@ -11,5 +11,5 @@ interface Rectangle<T> {
 	
 	fun contains(x: T, y: T): Boolean
 	
-	fun contains(p: AxialValues<T>): Boolean
+	fun contains(p: Axial<T>): Boolean
 }
