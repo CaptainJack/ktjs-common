@@ -1,7 +1,7 @@
 package ru.capjack.ktjs.common.rl
 
 object Urls {
-	private val EMPTY: Url = UrlImpl("", "", FilePaths.ROOT)
+	val EMPTY: Url = UrlImpl("", "", FilePaths.ROOT)
 	
 	fun get(url: String): Url {
 		if (url.isEmpty()) {
