@@ -11,13 +11,6 @@ class MutableIntInsets(
 	
 	constructor(x: Int, y: Int) : this(x, x, y, y)
 	
-	override fun set(left: Int, right: Int, top: Int, bottom: Int) {
-		this.left = left
-		this.right = right
-		this.top = top
-		this.bottom = bottom
-	}
-	
 	override val size: Axial<Int>
 		get() = axial(left + right, top + bottom)
 	

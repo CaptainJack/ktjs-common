@@ -8,7 +8,7 @@ interface EventDealer<in E : Any> {
 	
 	fun <C : E> onEvent(type: KClass<C>, receiver: (event: C) -> Unit): Cancelable
 	
-	fun <C : E> onEvent(type: C, receiver: () -> Unit): Cancelable
+	fun <C : E> onEvent(event: C, receiver: () -> Unit): Cancelable
 	
-	fun <C : E> onEvent(type: C, receiver: (event: C) -> Unit): Cancelable
+	fun <C : E> onEvent(event: C, receiver: (event: C) -> Unit): Cancelable
 }

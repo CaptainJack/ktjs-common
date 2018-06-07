@@ -16,9 +16,9 @@ open class EventDispatcherImpl<in E : Any> : EventDispatcher<E> {
 	
 	override fun <C : E> onEvent(type: KClass<C>, receiver: (event: C) -> Unit) = addReceiver(type, receiver)
 	
-	override fun <C : E> onEvent(type: C, receiver: () -> Unit) = addReceiver(type, receiver)
+	override fun <C : E> onEvent(event: C, receiver: () -> Unit) = addReceiver(event, receiver)
 	
-	override fun <C : E> onEvent(type: C, receiver: (event: C) -> Unit) = addReceiver(type, receiver)
+	override fun <C : E> onEvent(event: C, receiver: (event: C) -> Unit) = addReceiver(event, receiver)
 	
 	fun clearEventReceivers() {
 		receivers.clear()
