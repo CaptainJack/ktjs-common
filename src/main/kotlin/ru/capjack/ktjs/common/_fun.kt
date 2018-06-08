@@ -1,7 +1,7 @@
 package ru.capjack.ktjs.common
 
 import kotlin.browser.window
-import kotlin.properties.Delegates
+import kotlin.properties.ReadWriteProperty
 
 fun invokeDelayed(fn: () -> Unit) {
 	window.setTimeout(fn, 1)
@@ -17,8 +17,12 @@ fun invokeDelayedCancelable(fn: () -> Unit): Cancelable {
 }
 
 
-inline fun <T> observable(initialValue: T, crossinline onChange: (newValue: T) -> Unit) =
-	Delegates.observable(initialValue) { _, _, newValue -> onChange(newValue) }
+fun <T> observable(initialValue: T, onChange: (newValue: T) -> Unit): ReadWriteProperty<Any?, T> {
+	return CorrectObservableProperty(initialValue, onChange)
+}
 
-inline fun <T> observable(initialValue: T, crossinline onChange: () -> Unit) =
-	Delegates.observable(initialValue) { _, _, _ -> onChange() }
+fun <T> observable(initialValue: T, onChange: () -> Unit): ReadWriteProperty<Any?, T> {
+	return CorrectObservableProperty(initialValue, { _ -> onChange() })
+}
+
+
