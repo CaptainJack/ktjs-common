@@ -5,7 +5,7 @@ group = "ru.capjack.ktjs"
 
 plugins {
 	id("kotlin2js") version "1.2.50"
-	id("ru.capjack.degos.publish") version "1.6.0"
+	id("ru.capjack.degos.publish") version "1.7.0"
 	id("nebula.release") version "6.0.0"
 }
 
