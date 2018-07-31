@@ -2,16 +2,16 @@ package ru.capjack.ktjs.common
 
 import ru.capjack.ktjs.common.time.TimeSystem
 
-abstract class FlowNumberBase<T : Number>(
+class NumberFlowImpl<T>(
+	value: T,
 	private val timeSystem: TimeSystem,
 	private val deltaCalculator: (diff: T) -> T,
-	value: T,
-	private val maxTime: Int,
-	private val tickTime: Int
+	private val tickTime: Int = 20,
+	private val maxTime: Int = Int.MAX_VALUE
 
-) : FlowNumber<T> {
+) : NumberFlow<T> where T : Number, T : Comparable<T> {
 	
-	final override var current: T = value
+	override var current: T = value
 		private set
 	
 	private val handlers = ProcedureGroup()
@@ -25,6 +25,14 @@ abstract class FlowNumberBase<T : Number>(
 		return handlers.add(handler)
 	}
 	
+	override fun onChange(handler: (current: T) -> Unit): Cancelable {
+		return handlers.add(handler)
+	}
+	
+	override fun onChange(handler: () -> Unit): Cancelable {
+		return handlers.add(handler)
+	}
+	
 	override fun seek(value: T) {
 		if (target == value) {
 			return
@@ -34,9 +42,8 @@ abstract class FlowNumberBase<T : Number>(
 		
 		if (current == target) {
 			stop()
-		}
-		else {
-			increase = compare(target, current) > 0
+		} else {
+			increase = target > current
 			runningTime = 0.0
 			tick = timeSystem.scheduleRepeatable(tickTime, ::tick)
 		}
@@ -48,7 +55,7 @@ abstract class FlowNumberBase<T : Number>(
 		}
 		stop()
 		target = value
-		val delta = if (compare(target, current) > 0) subtract(target, current) else subtract(current, target)
+		val delta = if (target > current) subtract(target, current) else subtract(current, target)
 		current = target
 		handlers.invoke(current, delta)
 	}
@@ -58,8 +65,7 @@ abstract class FlowNumberBase<T : Number>(
 		
 		if (runningTime >= maxTime) {
 			set(target)
-		}
-		else {
+		} else {
 			val diff = if (increase) subtract(target, current) else subtract(current, target)
 			var delta = deltaCalculator.invoke(diff)
 			
@@ -68,7 +74,7 @@ abstract class FlowNumberBase<T : Number>(
 				throw IllegalStateException("Calculated delta is 0")
 			}
 			
-			if (compare(delta, diff) > 0) {
+			if (delta > diff) {
 				delta = diff
 			}
 			
@@ -91,9 +97,13 @@ abstract class FlowNumberBase<T : Number>(
 		handlers.invoke(current, delta)
 	}
 	
-	protected abstract fun compare(a: T, b: T): Int
+	@Suppress("UNUSED_PARAMETER")
+	private fun subtract(a: T, b: T): T {
+		return js("a - b") as T
+	}
 	
-	protected abstract fun subtract(a: T, b: T): T
-	
-	protected abstract fun add(a: T, b: T): T
+	@Suppress("UNUSED_PARAMETER")
+	private fun add(a: T, b: T): T {
+		return js("a + b") as T
+	}
 }
