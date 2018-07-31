@@ -21,5 +21,6 @@ tasks.withType<Kotlin2JsCompile> {
 	kotlinOptions {
 		moduleKind = "amd"
 		sourceMap = true
+		sourceMapEmbedSources = "always"
 	}
 }
