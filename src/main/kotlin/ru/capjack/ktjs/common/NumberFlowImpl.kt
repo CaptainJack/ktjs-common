@@ -100,12 +100,20 @@ class NumberFlowImpl<T : Number>(
 	}
 	
 	companion object {
-		fun createInt(value: Int, timeSystem: TimeSystem, timeQualifier: (diff: Int) -> Int, tickTime: Int = 32): NumberFlow<Int> {
+		fun createInt(value: Int, timeSystem: TimeSystem, tickTime: Int = 32, timeQualifier: (diff: Int) -> Int): NumberFlow<Int> {
 			return NumberFlowImpl(value, timeSystem, timeQualifier, tickTime, IntArithmetic)
 		}
 		
-		fun createLong(value: Long, timeSystem: TimeSystem, timeQualifier: (diff: Long) -> Int, tickTime: Int = 32): NumberFlow<Long> {
+		fun createInt(value: Int, timeSystem: TimeSystem, time: Int, tickTime: Int = 32): NumberFlow<Int> {
+			return createInt(value, timeSystem, tickTime) { time }
+		}
+		
+		fun createLong(value: Long, timeSystem: TimeSystem, tickTime: Int = 32, timeQualifier: (diff: Long) -> Int): NumberFlow<Long> {
 			return NumberFlowImpl(value, timeSystem, timeQualifier, tickTime, LongArithmetic)
+		}
+		
+		fun createLong(value: Long, timeSystem: TimeSystem, time: Int, tickTime: Int = 32): NumberFlow<Long> {
+			return createLong(value, timeSystem, tickTime) { time }
 		}
 	}
 }
