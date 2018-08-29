@@ -37,3 +37,5 @@ fun <E, V> toMap(src: dynamic, mapper: (E) -> V): Map<String, V> {
 fun requireJs(path: String, handler: () -> Unit) {
 	js("require")(arrayOf(path), handler)
 }
+
+external fun decodeURIComponent(value: String): String
