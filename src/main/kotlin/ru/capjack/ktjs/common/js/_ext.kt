@@ -2,7 +2,7 @@ package ru.capjack.ktjs.common.js
 
 import org.w3c.dom.Location
 
-fun Location.fetchQueryParams(): dynamic {
+fun Location.fetchQueryParams(): LocationQueryParams {
 	val params = jso<dynamic>()
 	val pairs = (if (search[0] == '?') search.substring(1) else search).split('&')
 	
@@ -10,6 +10,10 @@ fun Location.fetchQueryParams(): dynamic {
 		val pair = s.split('=', limit = 2)
 		params[decodeURIComponent(pair[0])] = decodeURIComponent(pair.getOrElse(1) { "" })
 	}
-	return params
+	return LocationQueryParams(params)
 	
+}
+
+class LocationQueryParams(private val data: dynamic) {
+	operator fun get(name: String) = data[name].unsafeCast<String>()
 }

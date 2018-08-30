@@ -34,8 +34,13 @@ fun <E, V> toMap(src: dynamic, mapper: (E) -> V): Map<String, V> {
 	return map
 }
 
-fun requireJs(path: String, handler: () -> Unit) {
+inline fun requireJs(path: String, noinline handler: () -> Unit) {
 	js("require")(arrayOf(path), handler)
 }
+
+inline fun <T> requireJs(path: String, noinline handler: (T) -> Unit) {
+	js("require")(arrayOf(path), handler)
+}
+
 
 external fun decodeURIComponent(value: String): String
