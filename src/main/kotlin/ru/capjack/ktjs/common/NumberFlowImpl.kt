@@ -93,7 +93,7 @@ class NumberFlowImpl<T : Number>(
 				stop()
 			}
 			else {
-				current = arithmetic.add(target, delta)
+				current = arithmetic.add(current, delta)
 				invokeHandlers(delta)
 			}
 		}
