@@ -19,7 +19,6 @@ internal open class FrameProcessor : Processor() {
 	}
 	
 	override fun doStop() {
-		clear()
 		stopTicker()
 	}
 	
@@ -98,10 +97,6 @@ internal open class FrameProcessor : Processor() {
 			tickerStopPassedTime = defineCurrentTime() - tickerLastTickTime
 			window.cancelAnimationFrame(tickerId)
 		}
-	}
-	
-	private fun defineCurrentTime(): Double {
-		return window.performance.now()
 	}
 	
 	private fun requestAnimationFrame() {

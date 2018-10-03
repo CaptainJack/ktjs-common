@@ -11,24 +11,53 @@ internal class ScheduledTask(
 ) : Task(repeatable) {
 	
 	private var startTime: Double = 0.0
+	private var stopPassedTime: Double = 0.0
 	private var tickId: Int? = null
 	
 	override fun doCancel() {
 		if (tickId != null) {
-			if (repeatable) {
-				window.clearInterval(tickId!!)
-			}
-			else {
-				window.clearTimeout(tickId!!)
-			}
-			tickId = null
+			stopTicker()
 		}
 		processor.removeTask(this)
 	}
 	
 	fun start() {
-		startTime = window.performance.now()
+		startTime = defineCurrentTime() - stopPassedTime
+		if (stopPassedTime == 0.0) {
+			startTicker()
+		}
+		else {
+			tickId = window.setTimeout(::tick, (delay - stopPassedTime).toInt())
+		}
+	}
+	
+	fun stop() {
+		if (tickId != null) {
+			stopTicker()
+			stopPassedTime = defineCurrentTime() - startTime
+		}
+	}
+	
+	private fun tick() {
+		val now = defineCurrentTime()
+		handler(now - startTime)
 		
+		if (repeatable) {
+			if (stopPassedTime == 0.0) {
+				startTime = now
+			}
+			else {
+				stopPassedTime = 0.0
+				startTicker()
+			}
+		}
+		else {
+			tickId = null
+			cancel()
+		}
+	}
+	
+	private fun startTicker() {
 		tickId = if (repeatable) {
 			window.setInterval(::tick, delay)
 		}
@@ -37,16 +66,14 @@ internal class ScheduledTask(
 		}
 	}
 	
-	private fun tick() {
-		val now = window.performance.now()
-		handler(now - startTime)
-		
+	private fun stopTicker() {
 		if (repeatable) {
-			startTime = now
+			window.clearInterval(tickId!!)
 		}
 		else {
-			tickId = null
-			cancel()
+			window.clearTimeout(tickId!!)
 		}
+		tickId = null
 	}
+	
 }

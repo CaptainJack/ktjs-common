@@ -10,7 +10,7 @@ internal class ScheduledProcessor : Processor() {
 	}
 	
 	override fun doStop() {
-		clear()
+		tasks.forEach(ScheduledTask::stop)
 	}
 	
 	override fun clear() {
