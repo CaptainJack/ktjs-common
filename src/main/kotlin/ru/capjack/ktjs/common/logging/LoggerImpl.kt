@@ -28,27 +28,27 @@ internal class LoggerImpl(
 		return this.level.ordinal >= level.ordinal
 	}
 	
-	override fun error(message: String, vararg args: dynamic) {
+	override fun error(message: String, vararg args: Any?) {
 		log(Level.ERROR, message, *args)
 	}
 	
-	override fun warn(message: String, vararg args: dynamic) {
+	override fun warn(message: String, vararg args: Any?) {
 		log(Level.WARN, message, *args)
 	}
 	
-	override fun info(message: String, vararg args: dynamic) {
+	override fun info(message: String, vararg args: Any?) {
 		log(Level.INFO, message, *args)
 	}
 	
-	override fun debug(message: String, vararg args: dynamic) {
+	override fun debug(message: String, vararg args: Any?) {
 		log(Level.DEBUG, message, *args)
 	}
 	
-	override fun trace(message: String, vararg args: dynamic) {
+	override fun trace(message: String, vararg args: Any?) {
 		log(Level.TRACE, message, *args)
 	}
 	
-	override fun log(level: Level, message: String, vararg args: dynamic) {
+	override fun log(level: Level, message: String, vararg args: Any?) {
 		if (isEnabled(level)) {
 			
 			var formattedMessage = message
