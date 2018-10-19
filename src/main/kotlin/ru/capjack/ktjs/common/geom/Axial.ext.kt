@@ -4,6 +4,10 @@ fun Axial<Int>.calculateRatio(dividendAxis: Axis): Double {
 	return get(dividendAxis) / get(dividendAxis.opposite).toDouble()
 }
 
+fun Axial<Double>.calculateRatio(dividendAxis: Axis): Double {
+	return get(dividendAxis) / get(dividendAxis.opposite)
+}
+
 fun <T : Comparable<T>> Axial<T>.isOutside(other: Axial<T>): Boolean {
 	return (x >= other.x && y > other.y) || (x > other.x && y >= other.y)
 }
@@ -27,6 +31,18 @@ inline fun <T> Axial<T>.forEachIf(value: T, block: (axis: Axis) -> Unit) {
 			block(axis)
 		}
 	}
+}
+
+fun <T> Axial<T>.toMutable(): MutableAxial<T> {
+	return mutableAxial(get(Axis.X), get(Axis.Y))
+}
+
+inline fun <T, R> Axial<T>.map(crossinline transform: (Axis, T) -> R): Axial<R> {
+	return axial { transform(it, get(it)) }
+}
+
+inline fun <T, R> Axial<T>.mapValues(crossinline block: (T) -> R): Axial<R> {
+	return axial { block(get(it)) }
 }
 
 fun Axial<Int>.negative(): Axial<Int> {

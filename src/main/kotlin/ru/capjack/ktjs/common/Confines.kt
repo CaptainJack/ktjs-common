@@ -1,6 +1,6 @@
 package ru.capjack.ktjs.common
 
-interface Confines<out T> {
+interface Confines<T> {
 	val min: T
 	val max: T
 }

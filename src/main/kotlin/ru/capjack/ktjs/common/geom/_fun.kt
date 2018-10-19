@@ -8,8 +8,8 @@ fun <T> axial(horizontal: T, vertical: T): Axial<T> {
 	return AxialImpl(horizontal, vertical)
 }
 
-fun <T> axial(supplier: (axis: Axis) -> T): Axial<T> {
-	return AxialImpl(
+inline fun <T> axial(supplier: (axis: Axis) -> T): Axial<T> {
+	return axial(
 		supplier(Axis.X),
 		supplier(Axis.Y)
 	)

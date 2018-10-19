@@ -15,3 +15,11 @@ fun <T : Comparable<T>> MutableAxial<T>.setMax(x: T, y: T) {
 		v      -> this.y = y
 	}
 }
+
+inline fun <T> MutableAxial<T>.change(axis: Axis, transform: (T) -> T) {
+	set(axis, transform(get(axis)))
+}
+
+inline fun <T> MutableAxial<T>.change(transform: (T) -> T) {
+	set(transform(get(Axis.X)), transform(get(Axis.Y)))
+}
