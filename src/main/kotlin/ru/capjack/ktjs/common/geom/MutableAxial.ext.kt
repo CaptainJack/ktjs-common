@@ -21,5 +21,5 @@ inline fun <T> MutableAxial<T>.change(axis: Axis, transform: (T) -> T) {
 }
 
 inline fun <T> MutableAxial<T>.change(transform: (T) -> T) {
-	set(transform(get(Axis.X)), transform(get(Axis.Y)))
+	set(transform(x), transform(y))
 }

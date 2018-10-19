@@ -1,5 +1,12 @@
 package ru.capjack.ktjs.common.geom
 
+val <T : Comparable<T>> Axial<T>.min: T
+	get() = minOf(x, y)
+
+val <T : Comparable<T>> Axial<T>.max: T
+	get() = maxOf(x, y)
+
+
 fun Axial<Int>.calculateRatio(dividendAxis: Axis): Double {
 	return get(dividendAxis) / get(dividendAxis.opposite).toDouble()
 }
@@ -19,6 +26,7 @@ fun <T : Comparable<T>> Axial<T>.isInside(other: Axial<T>): Boolean {
 fun <T : Comparable<T>> Axial<T>.isInsideAtLeastOne(other: Axial<T>): Boolean {
 	return x <= other.x || y <= other.y
 }
+
 
 inline fun <T> Axial<T>.forEach(block: (axis: Axis, value: T) -> Unit) {
 	block(Axis.X, x)
