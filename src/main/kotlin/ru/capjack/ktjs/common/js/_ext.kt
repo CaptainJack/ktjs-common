@@ -15,5 +15,5 @@ fun Location.fetchQueryParams(): LocationQueryParams {
 }
 
 class LocationQueryParams(private val data: dynamic) {
-	operator fun get(name: String) = data[name].unsafeCast<String>()
+	operator fun get(name: String) = data[name].unsafeCast<String?>()
 }
