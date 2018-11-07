@@ -9,10 +9,11 @@ class ConsoleOutput : Output {
 			Level.DEBUG -> console.asDynamic().log
 			Level.TRACE -> console.asDynamic().log
 		}.apply(
-			null,
+			console,
 			arrayOf(
 				"[${record.level.name.padEnd(5)}] [${record.logger}] ${record.message}",
 				*record.messageArguments
-			)		)
+			)
+		)
 	}
 }
