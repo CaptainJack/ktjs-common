@@ -17,3 +17,12 @@ fun Location.fetchQueryParams(): LocationQueryParams {
 class LocationQueryParams(private val data: dynamic) {
 	operator fun get(name: String) = data[name].unsafeCast<String?>()
 }
+
+val Location.queryParams: LocationQueryParams
+	get() {
+		val l = this.asDynamic()
+		if (l._queryParams == null) {
+			l._queryParams = fetchQueryParams()
+		}
+		return l._queryParams.unsafeCast<LocationQueryParams>()
+	}
