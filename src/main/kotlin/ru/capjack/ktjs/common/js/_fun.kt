@@ -43,4 +43,16 @@ inline fun <T> requireJs(path: String, noinline handler: (T) -> Unit) {
 }
 
 
+fun convertErrorEventToString(@Suppress("UNUSED_PARAMETER") event: dynamic): String {
+	return js(
+		"""
+	var error = event.error;
+	var errorMessage = (error && (error.message || error.toString())) || event.message || "?";
+	var errorType = (error && error.constructor && error.constructor.name) || "?";
+	var eventType = event.constructor && event.constructor.name || "?";
+	"(" + eventType + ") " + errorType + ": " + errorMessage;
+	"""
+	)
+}
+
 external fun decodeURIComponent(value: String): String
