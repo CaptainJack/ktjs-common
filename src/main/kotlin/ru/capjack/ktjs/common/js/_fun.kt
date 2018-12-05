@@ -46,12 +46,12 @@ inline fun <T> requireJs(path: String, noinline handler: (T) -> Unit) {
 fun convertErrorEventToString(@Suppress("UNUSED_PARAMETER") event: dynamic): String {
 	return js(
 		"""
-	var error = event.error;
-	var errorMessage = (error && (error.message || error.toString())) || event.message || "?";
-	var errorType = (error && error.constructor && error.constructor.name) || "?";
-	var eventType = event.constructor && event.constructor.name || "?";
-	"(" + eventType + ") " + errorType + ": " + errorMessage;
-	"""
+			var eventClass = event.constructor && event.constructor.name;
+			var error = event.error;
+			var errorClass = error && (error.constructor ? error.constructor.name : error.name) || "?";
+			var errorMessage = error ? (error.message || error.toString()) : event.message;
+			errorMessage ? (errorClass + ": " + errorMessage + (eventClass !== "ErrorEvent" ? " (" + eventClass + "." + event.type + ")" : "")) : (eventClass + "." + event.type);
+			"""
 	)
 }
 
