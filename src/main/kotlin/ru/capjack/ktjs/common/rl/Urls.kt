@@ -8,12 +8,22 @@ object Urls {
 			return EMPTY
 		}
 		
-		val r = Regex("(?:(http|https|file):)?(?://([a-zA-Z0-9.]+)/?)?(.+)")
-		val result = (r.find(url) ?: throw IllegalArgumentException(url)).groupValues
+		var path = url
 		
-		val scheme: String = result[1]
-		val host: String = result[2]
-		val path: String = result[3]
+		val scheme = when {
+			path.startsWith("https://", true) -> "https"
+			path.startsWith("http://", true)  -> "http"
+			path.startsWith("file://", true)  -> "file"
+			else                              -> ""
+		}
+		
+		var host = ""
+		
+		if (scheme.isNotEmpty()) {
+			path = path.substringAfter("//")
+			host = path.substringBefore("/")
+			path = path.substringAfter("/", "")
+		}
 		
 		return UrlImpl(scheme, host, FilePaths.get(path))
 	}
