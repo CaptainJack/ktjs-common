@@ -19,7 +19,7 @@ dependencies {
 
 tasks.withType<Kotlin2JsCompile> {
 	kotlinOptions {
-		moduleKind = "amd"
+		moduleKind = "umd"
 		sourceMap = true
 		sourceMapEmbedSources = "always"
 	}
